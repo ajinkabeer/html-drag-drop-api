@@ -60,21 +60,30 @@ function addEventListeners() {
 }
 
 function dragStart() {
-  console.log("Event :", "dragStart");
+  dragStartIndex = +this.closest("li").getAttribute("data-index");
 }
 
 function dragEnter() {
-  console.log("Event :", "dragEnter");
+  this.classList.add("over");
 }
 
 function dragDrop() {
-  console.log("Event :", "dragDrop");
+  const dragEndIndex = +this.getAttribute("data-index");
+  swapItems(dragStartIndex, dragEndIndex);
+  this.classList.remove("over");
 }
 
 function dragLeave() {
-  console.log("Event :", "dragLeave");
+  this.classList.remove("over");
 }
 
-function dragOver() {
-  console.log("Event :", "dragOver");
+function dragOver(evt) {
+  evt.preventDefault();
+}
+
+function swapItems(fromIndex, toIndex) {
+  const itemOne = listItems[fromIndex].querySelector(".draggable");
+  const itemTwo = listItems[toIndex].querySelector(".draggable");
+  listItems[fromIndex].appendChild(itemTwo);
+  listItems[toIndex].appendChild(itemOne);
 }
