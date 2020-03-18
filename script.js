@@ -59,6 +59,8 @@ function addEventListeners() {
   });
 }
 
+check.addEventListener("click", checkOrder);
+
 function dragStart() {
   dragStartIndex = +this.closest("li").getAttribute("data-index");
 }
@@ -81,9 +83,23 @@ function dragOver(evt) {
   evt.preventDefault();
 }
 
+// swap list items that are dragged and dropped
 function swapItems(fromIndex, toIndex) {
   const itemOne = listItems[fromIndex].querySelector(".draggable");
   const itemTwo = listItems[toIndex].querySelector(".draggable");
   listItems[fromIndex].appendChild(itemTwo);
   listItems[toIndex].appendChild(itemOne);
+}
+
+//check the order of list items on
+function checkOrder() {
+  listItems.forEach((listItem, index) => {
+    const personName = listItem.querySelector(".draggable").innerText.trim();
+    if (personName !== richPeople[index]) {
+      listItem.classList.add("wrong");
+    } else {
+      listItem.classList.remove("wrong");
+      listItem.classList.add("right");
+    }
+  });
 }
