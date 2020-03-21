@@ -6,7 +6,7 @@ Drag and drop world's richest people into correct position
 
 - HTML - For the web framework
 - CSS - For styling components
-- Vanilla JS - For everything else :)
+- Vanilla JS - For functionality
 
 ## Authors
 
